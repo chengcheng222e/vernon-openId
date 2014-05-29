@@ -24,5 +24,8 @@ sourceSets {
 }
 
 dependencies {
+
+    testCompile "junit:junit:4.8.2"
     compile fileTree(dir: 'lib', includes: ['*.jar'])
+
 }
