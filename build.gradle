@@ -1,0 +1,28 @@
+apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+sourceCompatibility = 1.5
+compileJava.options.encoding = "UTF-8"
+version = "1.0"
+
+// gradle war -Denv=local
+def env = System.getProperty("env")?:"local"
+
+repositories {
+    mavenCentral()
+    flatDir dirs: "lib"
+}
+
+sourceSets {
+    main {
+        resources {
+            exclude "src/main/resources"
+            srcDirs = ["src/main/resources/public","src/main/resources/$env"]
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'lib', includes: ['*.jar'])
+}
