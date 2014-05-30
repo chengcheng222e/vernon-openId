@@ -14,10 +14,6 @@ public class TencentWeiboConstantTest {
 
     private Logger logger = Logger.getLogger(TencentWeiboConstantTest.class);
 
-    //clientId=801510873
-    //clientSecret=1e166b73cb38da2cc32e4c0116bdad69
-    //redirectUri=http://tweet.ningmengcao.net
-
     private final String clientId = "clientId";
     private final String clientSecret = "clientSecret";
     private final String redirectUri = "redirectUri";

@@ -3,6 +3,7 @@ package com.tencent.weibo.example;
 import java.net.URI;
 import java.util.Scanner;
 
+import net.ningmengcao.openid.core.TencentWeiboConstant;
 import net.sf.json.JSONObject;
 
 import com.tencent.weibo.api.FriendsAPI;
@@ -282,9 +283,14 @@ public class TestOAuthV2AuthorizeCodeGrantAndAPI {
 	
 
     private static void init(OAuthV2 oAuth) {
-        oAuth.setClientId("801115505");
-        oAuth.setClientSecret("be1dd1410434a9f7d5a2586bab7a6829");
-        oAuth.setRedirectUri("http://www.tencent.com/zh-cn/index.shtml");
+        // ====== Config =====
+        String clientId = TencentWeiboConstant.INSTANCE.getStr("clientId");
+        String clientSecret = TencentWeiboConstant.INSTANCE.getStr("clientSecret");
+        String redirectUri = TencentWeiboConstant.INSTANCE.getStr("redirectUri");
+
+        oAuth.setClientId(clientId);
+        oAuth.setClientSecret(clientSecret);
+        oAuth.setRedirectUri(redirectUri);
 //        oAuth.setAccessToken("02204e5e59c2d22b73fb9b688e9f0c02");
 //        oAuth.setOpenid("42A2ACA51C28782E854A50C5FA14160A");
 //        oAuth.setOpenkey("ECBBC3B17F4190C8824DB652436E5DFA");
