@@ -17,95 +17,13 @@ import org.junit.Test;
  * Time: 9:05
  * To change this template use File | Settings | File Templates.
  */
-public class TencentWeiboServiceApiTest {
+public class TencentWeiboServiceApiTest extends BaseTest{
 
-    private Logger logger = Logger.getLogger(TencentWeiboServiceApiTest.class);
-
-    // -------------------------------- field names --------------------
-
-    String response;
-    String format = "json";
-    String clientip = "127.0.0.1";
-    String jing = "";
-    String wei = "";
-    String syncflag = "";
-    String pageflag = "0";
-    String pagetime = "0";
-    String reqnum = "5";
-    String lastid = "'0";
-    String contenttype = "0";
-    String content = "2";// 注意：因为后台会对微博内容进行判重，所以在重复测试时加上变换部分++++++++
-    String twitterid = "0";
-    String fopenids = "";
-    String fopenid = "";
-    String reid = null;
-    String ids = null;
-    String id = null;
-    String names = "api_weibo,t-qq-com,vvtest1";
-    String name = "t-qq-com";
-    String flag = "2";
-    String keyword = "微博";
-    String pagesize = "5";
-    String page = "0";
-    String searchtype = "0";
-    String msgtype = "0";
-    String sorttype = "0";
-    String type = "0";
-    String op = "0";
-    String starttime = "";
-    String endtime = "";
-    String province = "";
-    String city = "";
-    String longitue = "";
-    String latitude = "";
-    String radius = "";
-    String startindex = "0";
-    String mode = "0";
-    String install = "0";
-    String picpath = System.getProperty("user.dir") + "\\src\\main\\resources\\logo_QWeibo.jpg";
-
-    private OAuthV2 oAuth = new OAuthV2();
-    private TAPI tAPI;
-
-    @Before
-    public void init() {
-        String clientId = TencentWeiboConstant.INSTANCE.getStr("clientId");
-        String clientSecret = TencentWeiboConstant.INSTANCE.getStr("clientSecret");
-        String redirectUri = TencentWeiboConstant.INSTANCE.getStr("redirectUri");
-        // 二次获取
-        String authorizeCode = TencentWeiboConstant.INSTANCE.getStr("authorizeCode");
-        String accessToken = TencentWeiboConstant.INSTANCE.getStr("accessToken");
-        String expiresIn = TencentWeiboConstant.INSTANCE.getStr("expiresIn");
-        String refreshToken = TencentWeiboConstant.INSTANCE.getStr("refreshToken");
-        String openId = TencentWeiboConstant.INSTANCE.getStr("openId");
-        String openKey = TencentWeiboConstant.INSTANCE.getStr("openKey");
-
-        oAuth.setRedirectUri(redirectUri);
-        oAuth.setClientId(clientId);
-        oAuth.setClientSecret(clientSecret);
-        oAuth.setResponseType("code");// 默认
-        oAuth.setType("default");// 默认
-        oAuth.setAuthorizeCode(authorizeCode);
-        oAuth.setAccessToken(accessToken);
-        oAuth.setExpiresIn(expiresIn);
-        oAuth.setGrantType("authorization_code");// 默认
-        oAuth.setRefreshToken(refreshToken);
-        oAuth.setOpenid(openId);
-        oAuth.setOpenkey(openKey);
-        oAuth.setMsg("");
-
-        tAPI = new TAPI(oAuth.getOauthVersion());//根据oAuth配置对应的连接管理器
-    }
-
-    @After
-    public void close() {
-        tAPI.shutdownConnection();//关闭连接管理器
-    }
 
     @Test
     public void testAdd() throws Exception {
         //取得返回结果
-        response = tAPI.add(oAuth, format, "我跑testAdd添加一条腾讯微博~" + content, clientip, jing, wei, syncflag);
+        response = tAPI.add(oAuth, format, "#我跑testAdd#添加一条腾讯微博~" + content, clientip, jing, wei, syncflag);
         // json数据使用
         // response的结果可能是这样，{"data":{"id":"90221131024999","time":1333002978},"errcode":0,"msg":"ok","ret":0}
         // 下面的代码将取出 id 的对应值，并赋予 reid
