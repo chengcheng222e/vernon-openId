@@ -1,6 +1,7 @@
 package com.tencent.weibo;
 
 import com.tencent.weibo.api.TAPI;
+import com.tencent.weibo.constants.OAuthConstants;
 import com.tencent.weibo.oauthv2.OAuthV2;
 import net.ningmengcao.openid.core.TencentWeiboConstant;
 import net.sf.json.JSONObject;
@@ -76,6 +77,8 @@ public class TencentWeiboServiceApiTest {
         String accessToken = TencentWeiboConstant.INSTANCE.getStr("accessToken");
         String expiresIn = TencentWeiboConstant.INSTANCE.getStr("expiresIn");
         String refreshToken = TencentWeiboConstant.INSTANCE.getStr("refreshToken");
+        String openId = TencentWeiboConstant.INSTANCE.getStr("openId");
+        String openKey = TencentWeiboConstant.INSTANCE.getStr("openKey");
 
         oAuth.setRedirectUri(redirectUri);
         oAuth.setClientId(clientId);
@@ -87,6 +90,9 @@ public class TencentWeiboServiceApiTest {
         oAuth.setExpiresIn(expiresIn);
         oAuth.setGrantType("authorization_code");// 默认
         oAuth.setRefreshToken(refreshToken);
+        oAuth.setOpenid(openId);
+        oAuth.setOpenkey(openKey);
+        oAuth.setMsg("");
 
         tAPI = new TAPI(oAuth.getOauthVersion());//根据oAuth配置对应的连接管理器
     }
@@ -99,7 +105,7 @@ public class TencentWeiboServiceApiTest {
     @Test
     public void testAdd() throws Exception {
         //取得返回结果
-        response = tAPI.add(oAuth, format, "测试发表文字微博" + content, clientip, jing, wei, syncflag);
+        response = tAPI.add(oAuth, format, "我跑testAdd添加一条腾讯微博~" + content, clientip, jing, wei, syncflag);
         // json数据使用
         // response的结果可能是这样，{"data":{"id":"90221131024999","time":1333002978},"errcode":0,"msg":"ok","ret":0}
         // 下面的代码将取出 id 的对应值，并赋予 reid
